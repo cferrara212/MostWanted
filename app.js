@@ -9,17 +9,16 @@ console.log(data);
 
 // app is the function called to start the entire application
 function app(people) {
-  let searchType = promptFor(
-    "Do you know the name of the person you are looking for? Enter 'yes' or 'no'",
-    yesNo
-  ).toLowerCase();
+  let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   let searchResults;
+  let traitResults;
   switch (searchType) {
     case 'yes':
       searchResults = searchByName(people);
       break;
     case 'no':
       // TODO: search by traits
+      traitResults = chosenTrait(people);
       break;
     default:
       app(people); // restart app
@@ -94,7 +93,61 @@ function searchByName(people) {
   return foundPerson[0];
 }
 
+
+
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.  SHOULD WE SWITCH CASE THESE?
+
+function chosenTrait (people){
+  prompt
+let searchFor=promptFor("what trait are you looking for? Please type 'eye color' 'occupation' 'gender' or 'date of birth'", autoValid).toLocaleLowerCase();
+let occupationresult;
+  switch (searchFor) {
+    case 'occupation':
+      let occupationChoice = promptFor("which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",autoValid).toLocaleLowerCase();
+      occupationResult = searchByOccupation
+      break;
+    case 'eye color':
+      break;
+    case 'gender':
+      break;
+    case'date of birth':
+      break;    
+    default:
+      chosenttrait(people)
+      break;
+  }
+}
+
+function searchByEyeColor(people)
+{
+
+}
+
+function searchByOccupation(occupation, people)
+{
+
+}
+
+
+function searchByGender(people)
+{
+
+}
+
+function searchByDob(people)
+{
+
+}
+
+function searchByHeightRange(people)
+{
+
+}
+
+function searchByWeightRange(people)
+{
+
+}
 
 
 //#endregion
