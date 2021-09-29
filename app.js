@@ -5,6 +5,7 @@
 //Used for the overall flow of the application.
 /////////////////////////////////////////////////////////////////
 //#region 
+console.log(data);
 
 // app is the function called to start the entire application
 function app(people){
@@ -79,16 +80,10 @@ function searchByName(people){
     }
   })
   // TODO: find the person single person object using the name they entered.
-  return foundPerson;
+  return foundPerson[0];
 }
 
-//unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
-function searchByEyeColor(people){
-
-}
-
-//TODO: add other trait filter functions here.
-
+//unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.  SHOULD WE SWITCH CASE THESE?
 
 
 //#endregion
