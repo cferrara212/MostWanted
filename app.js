@@ -58,6 +58,7 @@ function mainMenu(person, people) {
       break;
     case 'descendants':
       // TODO: get person's descendants
+      displayPersonDescendants(person);
       break;
     case 'restart':
       app(people); // restart
@@ -177,7 +178,12 @@ function displayPersonFamily(person) {
          Spouse: ${person.currentSpouse}`;
   alert(familyInfo);
 }
-
+function displayPersonDescendants(person) {
+  //print only the information about the family related to that person
+  let descendantInfo = `         Parents: ${person.parents}
+         Spouse: ${person.currentSpouse}`;
+  alert(descendantInfo);
+}
 //#endregion
 
 
