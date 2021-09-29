@@ -49,10 +49,12 @@ function mainMenu(person, people) {
 
   switch (displayOption) {
     case 'info':
-      // TODO: get person's info
+      // TODO: get person's info Made this change, it is not saved to the cloud
+      displayPerson(person);
       break;
     case 'family':
-      // TODO: get person's family
+      // TODO: get person's family Added Line below, it is not saved to the cloud
+      displayPersonFamily(person);
       break;
     case 'descendants':
       // TODO: get person's descendants
@@ -94,35 +96,48 @@ function searchByName(people) {
 }
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
-function searchByEyeColor(people){
-
-}
+function searchByEyeColor(people) {}
 
 //TODO: add other trait filter functions here.
-
-
 
 //#endregion
 
 //Display functions.
 //Functions for user interface.
 /////////////////////////////////////////////////////////////////
-//#region 
+//#region
 
 // alerts a list of people
-function displayPeople(people){
-  alert(people.map(function(person){
-    return person.firstName + " " + person.lastName;
-  }).join("\n"));
+function displayPeople(people) {
+  alert(
+    people
+      .map(function (person) {
+        return person.firstName + ' ' + person.lastName;
+      })
+      .join('\n')
+  );
 }
 
-function displayPerson(person){
+function displayPerson(person) {
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
-  let personInfo = "First Name: " + person.firstName + "\n";
-  personInfo += "Last Name: " + person.lastName + "\n";
+  let personInfo = `                 First Name: ${person.firstName}
+                  Last Name:  ${person.lastName}
+                       Height:  ${person.height}
+                        Weight: ${person.weight}
+                            Age: ${person.age}
+                  Ocupation: ${person.occupation}
+                   Eye Color: ${person.eyeColor}`;
+
   // TODO: finish getting the rest of the information to display.
   alert(personInfo);
+}
+
+function displayPersonFamily(person) {
+  //print only the information about the family related to that person
+  let familyInfo = `         Parents: ${person.parents}
+         Spouse: ${person.currentSpouse}`;
+  alert(familyInfo);
 }
 
 //#endregion
