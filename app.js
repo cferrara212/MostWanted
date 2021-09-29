@@ -125,8 +125,10 @@ function searchByEyeColor(people)
 
 function searchByOccupation(occupation, people)
 {
-let peopleWithOccupation = people.filter(function(matches))
-}
+  let peopleWithOccupation = people.filter(function (matches))
+  {
+
+  }
 
 
 function searchByGender(people)
