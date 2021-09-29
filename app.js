@@ -95,10 +95,7 @@ function searchByName(people) {
   return foundPerson[0];
 }
 
-<<<<<<< HEAD
-//unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
-function searchByEyeColor(people) {}
-=======
+
 
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.  SHOULD WE SWITCH CASE THESE?
@@ -128,15 +125,11 @@ function searchByEyeColor(people)
 {
 
 }
->>>>>>> 5f276278258576c98e826592c748c3114450d8a9
 
 function searchByOccupation(occupation, people)
 {
 
 }
-
-<<<<<<< HEAD
-=======
 
 function searchByGender(people)
 {
@@ -159,7 +152,6 @@ function searchByWeightRange(people)
 }
 
 
->>>>>>> 5f276278258576c98e826592c748c3114450d8a9
 //#endregion
 
 //Display functions.
