@@ -49,12 +49,10 @@ function mainMenu(person, people) {
 
   switch (displayOption) {
     case 'info':
-      // TODO: get person's info Made this change, it is not saved to the cloud
-      displayPerson(person);
+      // TODO: get person's info
       break;
     case 'family':
-      // TODO: get person's family Added Line below, it is not saved to the cloud
-      displayPersonFamily(person);
+      // TODO: get person's family
       break;
     case 'descendants':
       // TODO: get person's descendants
@@ -97,7 +95,6 @@ function searchByName(people) {
 
 
 
-
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.  SHOULD WE SWITCH CASE THESE?
 
 function chosenTrait (people){
@@ -107,7 +104,7 @@ let occupationresult;
   switch (searchFor) {
     case 'occupation':
       let occupationChoice = promptFor("which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",autoValid).toLocaleLowerCase();
-      occupationResult = searchByOccupation
+      occupationResult = searchByOccupation(occupationChoice,people);
       break;
     case 'eye color':
       break;
@@ -128,8 +125,9 @@ function searchByEyeColor(people)
 
 function searchByOccupation(occupation, people)
 {
-
+let peopleWithOccupation = people.filter(function(matches))
 }
+
 
 function searchByGender(people)
 {
@@ -157,39 +155,22 @@ function searchByWeightRange(people)
 //Display functions.
 //Functions for user interface.
 /////////////////////////////////////////////////////////////////
-//#region
+//#region 
 
 // alerts a list of people
-function displayPeople(people) {
-  alert(
-    people
-      .map(function (person) {
-        return person.firstName + ' ' + person.lastName;
-      })
-      .join('\n')
-  );
+function displayPeople(people){
+  alert(people.map(function(person){
+    return person.firstName + " " + person.lastName;
+  }).join("\n"));
 }
 
-function displayPerson(person) {
+function displayPerson(person){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
-  let personInfo = `                 First Name: ${person.firstName}
-                  Last Name:  ${person.lastName}
-                       Height:  ${person.height}
-                        Weight: ${person.weight}
-                            Age: ${person.age}
-                  Ocupation: ${person.occupation}
-                   Eye Color: ${person.eyeColor}`;
-
+  let personInfo = "First Name: " + person.firstName + "\n";
+  personInfo += "Last Name: " + person.lastName + "\n";
   // TODO: finish getting the rest of the information to display.
   alert(personInfo);
-}
-
-function displayPersonFamily(person) {
-  //print only the information about the family related to that person
-  let familyInfo = `         Parents: ${person.parents}
-         Spouse: ${person.currentSpouse}`;
-  alert(familyInfo);
 }
 
 //#endregion
