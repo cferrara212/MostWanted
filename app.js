@@ -54,6 +54,7 @@ function mainMenu(person, people) {
       break;
     case 'family':
       // TODO: get person's family
+      displayPersonFamily(person);
       break;
     case 'descendants':
       // TODO: get person's descendants
@@ -167,6 +168,14 @@ function displayPerson(person) {
                    Eye Color: ${person.eyeColor}`;
   // TODO: finish getting the rest of the information to display.
   alert(personInfo);
+}
+
+//Function to display the family of the person
+function displayPersonFamily(person) {
+  //print only the information about the family related to that person
+  let familyInfo = `         Parents: ${person.parents}
+         Spouse: ${person.currentSpouse}`;
+  alert(familyInfo);
 }
 
 //#endregion
