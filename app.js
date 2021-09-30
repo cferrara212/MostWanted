@@ -101,9 +101,7 @@ function searchByName(people) {
 function chosenTrait(people) {
   prompt;
   let searchFor = promptFor(
-    "what trait are you looking for? Please type 'eye color' 'occupation' 'gender' or 'date of birth'",
-    autoValid
-  ).toLocaleLowerCase();
+    "what trait are you looking for? Please type 'eye color' 'occupation' 'gender' 'date of birth' 'height' or 'weight'",autoValid).toLocaleLowerCase();
 
   let occupationResult;
   let genderResult;
@@ -112,49 +110,39 @@ function chosenTrait(people) {
   let heightResult;
   let weightResult;
 
-  switch (searchFor) {
+
+  switch (searchFor) 
+  {
     case 'occupation':
       let occupationChoice = promptFor(
-        "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",
-        autoValid
-      ).toLocaleLowerCase();
+        "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",autoValid).toLocaleLowerCase();
       occupationResult = searchByOccupation(occupationChoice, people);
       console.log(occupationResult);
       break;
 
     case 'eye color':
-      let eyeColorChoice = promptFor(
-        "which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",
-        autoValid
-      ).toLowerCase();
+      let eyeColorChoice = promptFor("which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",autoValid).toLowerCase()
+      eyeColorResult = searchByEyeColor(eyeColorChoice,people);
       break;
 
     case 'gender':
-      let genderChoice = promptFor(
-        "Which gender would you like to search for? Please enter 'male' or 'female",
-        autoValid
-      ).toLowerCase();
+      let genderChoice= promptFor("Which gender would you like to search for? Please enter 'male' or 'female", autoValid).toLowerCase();
+      genderResult= searchByGender(genderChoice,people);
       break;
 
     case 'date of birth':
-      let dobChoice = promptFor(
-        'Please enter a date of birth to search for. Use the format d/m/yyyy',
-        autoValid
-      );
+      let dobChoice= promptFor("Please enter a date of birth to search for. Use the format d/m/yyyy", autoValid);
+      dobResult = searchByDob(dobChoice,people);
       break;
 
     case 'height':
-      let heightChoice = promptFor(
-        'Please enter the height in inches of the individual you are looking for',
-        autoValid
-      );
+      let heightChoice =Number( promptFor("Please enter the height in inches of the individual you are looking for", autoValid));
+      heightResult = searchByHeightRange(heightChoice,people);
       break;
 
     case 'weight':
-      let weightChoice = promptFor(
-        'Please enter the weight in lbs of the individual you are looking for.',
-        autoValid
-      );
+      let weightChoice =Number( promptFor("Please enter the weight in lbs of the individual you are looking for.",autoValid));
+      weightResult = searchByWeightRange(weightChoice,people);
       break;
 
     default:
@@ -163,26 +151,110 @@ function chosenTrait(people) {
   }
 }
 
-function searchByEyeColor(people) {}
+function searchByEyeColor(eyeColor,people) 
 
-function searchByOccupation(occupation, people) {
-  let peopleWithOccupation = people.filter(function (matches) {
-    if (matches.occupation.toLowerCase() === occupation.toLowerCase()) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-  return peopleWithOccupation;
+  {
+    let peopleWithEyeColor = people.filter(function(matches)
+    {
+      if (matches.eyeColor.toLowerCase()===eyeColor.toLowerCase())
+          {
+            return true;
+          }
+      else
+          {
+            return false;
+          }
+    
+     })
+     return peopleWithEyeColor;
+  }
+
+
+function searchByOccupation(occupation, people) 
+{
+  let peopleWithOccupation = people.filter(function(matches)
+  {
+    if (matches.occupation.toLowerCase()===occupation.toLowerCase())
+        {
+          return true;
+        }
+    else
+        {
+          return false;
+        }
+  
+   })
+   return peopleWithOccupation;
+}
+/////fix from here
+function searchByGender(gender,people) 
+{
+  let peopleWithGender = people.filter(function(matches)
+  {
+    if (matches.gender.toLowerCase()===gender.toLowerCase())
+        {
+          return true;
+        }
+    else
+        {
+          return false;
+        }
+  
+   })
+   return peopleWithGender;
 }
 
-function searchByGender(people) {}
+function searchByDob(chosendob,people) 
+{
+  let peopleWithDob = people.filter(function(matches)
+  {
+    if (matches.dob.toLowerCase()===chosendob.toLowerCase())
+        {
+          return true;
+        }
+    else
+        {
+          return false;
+        }
+  
+   })
+   return peopleWithDob;
+}
 
-function searchByDob(people) {}
+function searchByHeightRange(chosenHeight,people) 
+{
+  let peopleWithHeight = people.filter(function(matches)
+  {
+    if (matches.height===chosenHeight)
+        {
+          return true;
+        }
+    else
+        {
+          return false;
+        }
+  
+   })
+   return peopleWithHeight;
+}
 
-function searchByHeightRange(people) {}
+function searchByWeightRange(chosenWeight,people) 
+{
+  let peopleWithWeight = people.filter(function(matches)
+  {
+    if (matches.weight===chosenWeight)
+        {
+          return true;
+        }
+    else
+        {
+          return false;
+        }
+  
+   })
+   return peopleWithWeight;
+}
 
-function searchByWeightRange(people) {}
 
 //#endregion
 
