@@ -54,7 +54,7 @@ function mainMenu(person, people) {
       break;
     case 'family':
       // TODO: get person's family
-      displayPersonFamily(person);
+      displayPersonFamily(person, people);
       break;
     case 'descendants':
       // TODO: get person's descendants
@@ -101,7 +101,9 @@ function searchByName(people) {
 function chosenTrait(people) {
   prompt;
   let searchFor = promptFor(
-    "what trait are you looking for? Please type 'eye color' 'occupation' 'gender' or 'date of birth'",autoValid).toLocaleLowerCase();
+    "what trait are you looking for? Please type 'eye color' 'occupation' 'gender' or 'date of birth'",
+    autoValid
+  ).toLocaleLowerCase();
 
   let occupationResult;
   let genderResult;
@@ -110,34 +112,49 @@ function chosenTrait(people) {
   let heightResult;
   let weightResult;
 
-
-  switch (searchFor) 
-  {
+  switch (searchFor) {
     case 'occupation':
       let occupationChoice = promptFor(
-        "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",autoValid).toLocaleLowerCase();
+        "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",
+        autoValid
+      ).toLocaleLowerCase();
       occupationResult = searchByOccupation(occupationChoice, people);
       console.log(occupationResult);
       break;
 
     case 'eye color':
-      let eyeColorChoice = promptFor("which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",autoValid).toLowerCase()
+      let eyeColorChoice = promptFor(
+        "which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",
+        autoValid
+      ).toLowerCase();
       break;
 
     case 'gender':
-      let genderChoice= promptFor("Which gender would you like to search for? Please enter 'male' or 'female", autoValid).toLowerCase();
+      let genderChoice = promptFor(
+        "Which gender would you like to search for? Please enter 'male' or 'female",
+        autoValid
+      ).toLowerCase();
       break;
 
     case 'date of birth':
-      let dobChoice= promptFor("Please enter a date of birth to search for. Use the format d/m/yyyy", autoValid);
+      let dobChoice = promptFor(
+        'Please enter a date of birth to search for. Use the format d/m/yyyy',
+        autoValid
+      );
       break;
 
     case 'height':
-      let heightChoice = promptFor("Please enter the height in inches of the individual you are looking for", autoValid);
+      let heightChoice = promptFor(
+        'Please enter the height in inches of the individual you are looking for',
+        autoValid
+      );
       break;
 
     case 'weight':
-      let weightChoice = promptFor("Please enter the weight in lbs of the individual you are looking for.",autoValid);
+      let weightChoice = promptFor(
+        'Please enter the weight in lbs of the individual you are looking for.',
+        autoValid
+      );
       break;
 
     default:
@@ -146,24 +163,17 @@ function chosenTrait(people) {
   }
 }
 
-
 function searchByEyeColor(people) {}
 
-function searchByOccupation(occupation, people) 
-{
-  let peopleWithOccupation = people.filter(function(matches)
-  {
-    if (matches.occupation.toLowerCase()===occupation.toLowerCase())
-        {
-          return true;
-        }
-    else
-        {
-          return false;
-        }
-  
-   })
-   return peopleWithOccupation;
+function searchByOccupation(occupation, people) {
+  let peopleWithOccupation = people.filter(function (matches) {
+    if (matches.occupation.toLowerCase() === occupation.toLowerCase()) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return peopleWithOccupation;
 }
 
 function searchByGender(people) {}
@@ -182,10 +192,14 @@ function searchByWeightRange(people) {}
 //#region
 
 // alerts a list of people
-function displayPeople(people) 
-{
+function displayPeople(people) {
   alert(
-    people.map(function (person) {return person.firstName + ' ' + person.lastName;}).join('\n'));
+    people
+      .map(function (person) {
+        return person.firstName + ' ' + person.lastName;
+      })
+      .join('\n')
+  );
 }
 
 function displayPerson(person) {
@@ -203,10 +217,10 @@ function displayPerson(person) {
 }
 
 //Function to display the family of the person
-function displayPersonFamily(person) {
+function displayPersonFamily(person, people) {
   //print only the information about the family related to that person
-  let familyInfo = `         Parents: ${person.parents}
-         Spouse: ${person.currentSpouse}`;
+  let familyInfo = `         Parents: ${getPersonsParents(person, people)}
+         Spouse: ${getPersonsSpouse(person, people)}`;
   alert(familyInfo);
 }
 function displayPersonDescendants(person) {
@@ -214,6 +228,38 @@ function displayPersonDescendants(person) {
   let descendantInfo = `         Parents: ${person.parents}
          Spouse: ${person.currentSpouse}`;
   alert(descendantInfo);
+}
+
+function getPersonsSpouse(person, people) {
+  if (person.currentSpouse !== null) {
+    const spouse = people.filter(function (sPerson) {
+      return sPerson.id === person.currentSpouse;
+    });
+
+    if (spouse.length > 1) {
+      console.log('You are going to hell');
+    }
+    let fullName = spouse[0].firstName + ' ' + spouse[0].lastName;
+    //return spouse[0];
+    return fullName;
+  }
+
+  return null;
+}
+function getPersonsParents(person, people) {
+  if (person.parents !== null) {
+    const parent = people.find(function (sPerson) {
+      return sPerson.id === person.parents[0];
+    });
+
+    if (parent === undefined) {
+      return 'No Parent found in database';
+    }
+    let fullName = parent.firstName + ' ' + parent.lastName;
+    //return parent.firstName;
+    return fullName;
+  }
+  return 'No Parent found in database';
 }
 //#endregion
 
