@@ -101,34 +101,69 @@ function searchByName(people) {
 function chosenTrait(people) {
   prompt;
   let searchFor = promptFor(
-    "what trait are you looking for? Please type 'eye color' 'occupation' 'gender' or 'date of birth'",
-    autoValid
-  ).toLocaleLowerCase();
-  let occupationresult;
-  switch (searchFor) {
+    "what trait are you looking for? Please type 'eye color' 'occupation' 'gender' or 'date of birth'",autoValid).toLocaleLowerCase();
+
+  let occupationResult;
+  let genderResult;
+  let eyeColorResult;
+  let dobResult;
+  let heightResult;
+  let weightResult;
+
+
+  switch (searchFor) 
+  {
     case 'occupation':
       let occupationChoice = promptFor(
-        "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",
-        autoValid
-      ).toLocaleLowerCase();
+        "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",autoValid).toLocaleLowerCase();
       occupationResult = searchByOccupation(occupationChoice, people);
+      console.log(occupationResult);
       break;
+
     case 'eye color':
+      let eyeColorChoice = promptFor("which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",autoValid).toLowerCase()
       break;
+
     case 'gender':
+      let genderChoice= promptFor("Which gender would you like to search for? Please enter 'male' or 'female", autoValid).toLowerCase();
       break;
+
     case 'date of birth':
+      let dobChoice= promptFor("Please enter a date of birth to search for. Use the format d/m/yyyy", autoValid);
       break;
+
+    case 'height':
+      let heightChoice = promptFor("Please enter the height in inches of the individual you are looking for", autoValid);
+      break;
+
+    case 'weight':
+      let weightChoice = promptFor("Please enter the weight in lbs of the individual you are looking for.",autoValid);
+      break;
+
     default:
       chosenttrait(people);
       break;
   }
 }
 
+
 function searchByEyeColor(people) {}
 
-function searchByOccupation(occupation, people) {
-  //let peopleWithOccupation = people.filter(function(matches))
+function searchByOccupation(occupation, people) 
+{
+  let peopleWithOccupation = people.filter(function(matches)
+  {
+    if (matches.occupation.toLowerCase()===occupation.toLowerCase())
+        {
+          return true;
+        }
+    else
+        {
+          return false;
+        }
+  
+   })
+   return peopleWithOccupation;
 }
 
 function searchByGender(people) {}
@@ -147,14 +182,10 @@ function searchByWeightRange(people) {}
 //#region
 
 // alerts a list of people
-function displayPeople(people) {
+function displayPeople(people) 
+{
   alert(
-    people
-      .map(function (person) {
-        return person.firstName + ' ' + person.lastName;
-      })
-      .join('\n')
-  );
+    people.map(function (person) {return person.firstName + ' ' + person.lastName;}).join('\n'));
 }
 
 function displayPerson(person) {
@@ -197,13 +228,15 @@ function displayPersonDescendants(person) {
 //response: Will capture the user input.
 //isValid: Will capture the return of the validation function callback. true(the user input is valid)/false(the user input was not valid).
 //this function will continue to loop until the user enters something that is not an empty string("") or is considered valid based off the callback function(valid).
-function promptFor(question, valid){
+function promptFor(question, valid)
+{
   let isValid;
   do{
-    var response = prompt(question).trim();
-    isValid = valid(response);
-  } while(response === ""  ||  isValid === false)
-  return response;
+       var response = prompt(question).trim();
+       isValid = valid(response);
+    } 
+    while(response === ""  ||  isValid === false)
+    return response;
 }
 
 // helper function/callback to pass into promptFor to validate yes/no answers.
