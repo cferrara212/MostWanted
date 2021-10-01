@@ -263,7 +263,7 @@ function displayPerson(person) {
                   Last Name:  ${person.lastName}
                        Height:  ${person.height}
                         Weight: ${person.weight}
-                            Age: ${person.dob}
+                           Age: ${calculateBirthDay(person.dob)}
                   Ocupation: ${person.occupation}
                    Eye Color: ${person.eyeColor}`;
   // TODO: finish getting the rest of the information to display.
@@ -316,6 +316,12 @@ function getPersonsParents(person, people) {
   }
 
   return fullNames;
+}
+//To Calculate the Age using the Date of Birth Given
+function calculateBirthDay(dob) {
+  const currentYear = new Date();
+  const birthYear = new Date(dob);
+  return `${currentYear.getFullYear() - birthYear.getFullYear()} Years Old`;
 }
 
 //#endregion
