@@ -101,10 +101,76 @@ function searchByName(people) {
 }
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.  SHOULD WE SWITCH CASE THESE?
-
+let searchArray = [];
 function multiTraits(people){
-  let searchFor = promptFor("i have no idea what im doing");
-  let searchArray = [];
+  let traitPicked = promptFor("press 1 for occupation"+"\n" + "press 2 for eye color"+"\n" + "press 3 for gender"+"\n"+ "press 4 for date of birth"+ "\n"+"press 5 for height"+"\n"+"press 6 for weight"
+  + "\n"+ "press 7 if you have your search criteria all picked",multiSearchOptionsVal);
+  
+  let occupationResult;
+  let genderResult;
+  let eyeColorResult;
+  let dobResult;
+  let heightResult;
+  let weightResult;
+
+  switch(traitPicked){
+    case '1':
+      let occupationChoice = promptFor(
+        "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",
+        occupationValidation
+      ).toLocaleLowerCase();
+      searchArray.push (occupationChoice);
+       multiTraits(people);
+      ;break
+    case '2':
+      let eyeColorChoice = promptFor(
+        "which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",
+        eyeColorValidation
+      ).toLowerCase();
+      searchArray.push(eyeColorChoice);
+      multiTraits(people);
+      ;break
+    case '3':
+      let genderChoice = promptFor(
+        "Which gender would you like to search for? Please enter 'male' or 'female",
+        genderValidation
+      ).toLowerCase();
+      searchArray.push(genderChoice);
+      multiTraits(people);
+      break;
+    case '4':
+      let dobChoice = promptFor(
+        'Please enter a date of birth to search for. Use the format d/m/yyyy',
+        autoValid
+      );
+      searchArray.push(dobChoice);
+      multiTraits(people);
+      break;
+    case '5':
+      let heightChoice = Number(
+        promptFor(
+          'Please enter the height in inches of the individual you are looking for',
+          autoValid
+        ));
+        searchArray.push(heightChoice)
+        multiTraits(people);
+      break; 
+    case '6':
+      let weightChoice = Number(
+        promptFor(
+          'Please enter the weight in lbs of the individual you are looking for.',
+          autoValid
+        ));
+        searchArray.push(weightChoice)
+        multiTraits(people);
+      break;
+    case '7':
+      // use searchArray here
+      break;
+    default:
+      multiTraits(people);
+      break;             
+  }
 }
 
 function chosenTrait(people) {
@@ -490,6 +556,15 @@ function singlMultipleValidation(input){
   }
   else{
     alert('Sorry that is not an option')
+    return false;
+  }
+}
+function multiSearchOptionsVal(input){
+  if(input == '1' || input=='2' || input=='3' || input=='4' || input=='5' || input=='6'){
+    return true;
+  }
+  else{
+    alert('sorry that is not an option')
     return false;
   }
 }
