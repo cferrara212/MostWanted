@@ -317,10 +317,11 @@ function arrayToStringForNames(array)
 function displayPersonFamily(person, people) {
   //print only the information about the family related to that person
   let familyInfo = `         Parents: ${getPersonsParents(person, people)}
-         Spouse: ${getPersonsSpouse(person, people)}`;
+         Spouse: ${getPersonsSpouse(person, people)}
+        Sibling: ${getPersonsSiblings(person, people)}`;
   alert(familyInfo);
 }
-//Function to display Descendants for the person selected 
+//Function to display Descendants for the person selected
 function displayPersonDescendants(person, people) {
   //print only the information about the family related to that person
   let descendantInfo = `         Descendants: ${getPersonsDescendants(
@@ -359,6 +360,21 @@ function getPersonsParents(person, people) {
     }
   } else {
     return 'No Parent Found in Database';
+  }
+
+  return fullNames;
+}
+function getPersonsSiblings(person, people) {
+  let fullNames = '';
+  let siblings = people.filter(function (sPerson) {
+    return sPerson.parents[0] === person.parents[0];
+  });
+  if (siblings.length && siblings.parents !== -1) {
+    for (let sibling of siblings) {
+      fullNames += sibling.firstName + ' ' + sibling.lastName + '\n';
+    }
+  } else {
+    return 'No Siblings Found in Database';
   }
 
   return fullNames;
