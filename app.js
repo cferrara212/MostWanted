@@ -114,7 +114,7 @@ function chosenTrait(people) {
     case 'occupation':
       let occupationChoice = promptFor(
         "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",
-        autoValid
+        occupationValidation
       ).toLocaleLowerCase();
       occupationResult = searchByOccupation(occupationChoice, people);
       alert ("Here are the poeple that match your search" + '\n' + occupationResult);
@@ -123,7 +123,7 @@ function chosenTrait(people) {
     case 'eye color':
       let eyeColorChoice = promptFor(
         "which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",
-        autoValid
+        eyeColorValidation
       ).toLowerCase();
       eyeColorResult = searchByEyeColor(eyeColorChoice, people);
       alert ("Here are the poeple that match your search" + '\n' + eyeColorResult);
@@ -132,7 +132,7 @@ function chosenTrait(people) {
     case 'gender':
       let genderChoice = promptFor(
         "Which gender would you like to search for? Please enter 'male' or 'female",
-        autoValid
+        genderValidation
       ).toLowerCase();
       genderResult = searchByGender(genderChoice, people);
       alert ("Here are the poeple that match your search" + '\n' + genderResult);
@@ -442,5 +442,37 @@ function autoValid(input){
 function customValidation(input){
   
 }
+function eyeColorValidation (input){
+  if (input.toLowerCase()== 'brown' || input.toLowerCase()== 'blue' || input.toLowerCase()=='black' || input.toLowerCase()=='hazel' || input.toLowerCase()=='green' ){
+    return true;
+  }
+    else{
+      alert("sorry that was not an option.");
+      return false;
+    }
+  }
+  
+function occupationValidation (input){
+  if(input.toLowerCase() == 'doctor' || input.toLowerCase()=='programmer' || input.toLowerCase()=='assistant' || input.toLowerCase()=='landscaper' || input.toLowerCase()=='nurse' || input.toLowerCase()=='student'
+  || input.toLowerCase()=='architect' || input.toLowerCase()=='politician' ){
+    return true;
+  }
+  else{
+    alert('sorry that was not an option');
+    return false;
+  }
+}
+
+function genderValidation (input){
+  if(input.toLowerCase()==='male' || input.toLowerCase()==='female'){
+    return true;
+  }
+  else{
+    alert("sorry that was not an option");
+    return false;
+  }
+}
+
+
 
 //#endregion
