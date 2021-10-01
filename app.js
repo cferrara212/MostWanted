@@ -128,6 +128,7 @@ function chosenTrait(people) {
         autoValid
       ).toLowerCase();
       eyeColorResult = searchByEyeColor(eyeColorChoice, people);
+      alert ("Here are the poeple that match your search" + '\n' + eyeColorResult);
       break;
 
     case 'gender':
@@ -172,18 +173,38 @@ function chosenTrait(people) {
   }
 }
 
-function searchByEyeColor(eyeColor, people) {
-  let peopleWithEyeColor = people.filter(function (matches) {
-    if (matches.eyeColor.toLowerCase() === eyeColor.toLowerCase()) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-  return peopleWithEyeColor;
-}
+function searchByEyeColor(eyeColor,people) 
+ {
+    let allNames = ''
+    let peopleWithEyeColor = people.filter(function(matches)
+    {
+      if (matches.eyeColor.toLowerCase()===eyeColor.toLowerCase())
+          {
+            return true;
+          }
+      else
+          {
+            return false;
+          }
+    
+     })
+     if (peopleWithEyeColor.length) 
+     {
+       for (let person of peopleWithEyeColor)
+       {
+         allNames += person.firstName + ' ' + person.lastName + '\n';
+       }
+       }
+     else
+     {
+        return 'No Matches Found';
+     } 
+
+     return allNames;
+  }
 
 function searchByOccupation(occupation, people) {
+  let fullNames = ''
   let peopleWithOccupation = people.filter(function (matches) {
     if (matches.occupation.toLowerCase() === occupation.toLowerCase()) {
       return true;
@@ -195,6 +216,7 @@ function searchByOccupation(occupation, people) {
 }
 /////fix from here
 function searchByGender(gender, people) {
+  let fullNames = ''
   let peopleWithGender = people.filter(function (matches) {
     if (matches.gender.toLowerCase() === gender.toLowerCase()) {
       return true;
@@ -203,9 +225,11 @@ function searchByGender(gender, people) {
     }
   });
   return peopleWithGender;
+
 }
 
 function searchByDob(chosendob, people) {
+  let fullNames = ''
   let peopleWithDob = people.filter(function (matches) {
     if (matches.dob.toLowerCase() === chosendob.toLowerCase()) {
       return true;
@@ -217,6 +241,7 @@ function searchByDob(chosendob, people) {
 }
 
 function searchByHeightRange(chosenHeight, people) {
+  let fullNames = ''
   let peopleWithHeight = people.filter(function (matches) {
     if (matches.height === chosenHeight) {
       return true;
@@ -228,6 +253,7 @@ function searchByHeightRange(chosenHeight, people) {
 }
 
 function searchByWeightRange(chosenWeight, people) {
+  let fullNames = ''
   let peopleWithWeight = people.filter(function (matches) {
     if (matches.weight === chosenWeight) {
       return true;
@@ -263,7 +289,7 @@ function displayPerson(person) {
                   Last Name:  ${person.lastName}
                        Height:  ${person.height}
                         Weight: ${person.weight}
-                           Age: ${calculateBirthDay(person.dob)}
+                        Age: ${calculateBirthDay(person.dob)}
                   Ocupation: ${person.occupation}
                    Eye Color: ${person.eyeColor}`;
   // TODO: finish getting the rest of the information to display.
