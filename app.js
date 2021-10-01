@@ -320,10 +320,13 @@ function displayPersonFamily(person, people) {
          Spouse: ${getPersonsSpouse(person, people)}`;
   alert(familyInfo);
 }
-function displayPersonDescendants(person) {
+//Function to display Descendants for the person selected 
+function displayPersonDescendants(person, people) {
   //print only the information about the family related to that person
-  let descendantInfo = `         Parents: ${person.parents}
-         Spouse: ${person.currentSpouse}`;
+  let descendantInfo = `         Descendants: ${getPersonsDescendants(
+    person,
+    people
+  )}`;
   alert(descendantInfo);
 }
 
@@ -359,6 +362,21 @@ function getPersonsParents(person, people) {
   }
 
   return fullNames;
+}
+//Loop through all items and pull the information from the database using the descendants Found
+function getPersonsDescendants(person, people) {
+  let relatives = '';
+  let descendants = people.filter(function (sPerson) {
+    return sPerson.parents.includes(person.id);
+  });
+  if (descendants.length) {
+    for (let descendant of descendants) {
+      relatives += descendant.firstName + ' ' + descendant.lastName + '\n';
+    }
+  } else {
+    return 'No descendants Found in Database';
+  }
+  return relatives;
 }
 //To Calculate the Age using the Date of Birth Given
 function calculateBirthDay(dob) {
