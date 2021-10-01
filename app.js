@@ -19,7 +19,13 @@ function app(people) {
       break;
     case 'no':
       // TODO: search by traits
+      let singleorMultiple = promptFor("would you like to search by a single trait, or multiple traits? Enter 'single' or 'multiple'",singlMultipleValidation).toLowerCase();
+      if(singleorMultiple==='single'){
       traitResults = chosenTrait(people);
+      }
+      else{
+        traitResults = multiTraits(people);
+      }
       break;
     default:
       app(people); // restart app
@@ -95,6 +101,11 @@ function searchByName(people) {
 }
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.  SHOULD WE SWITCH CASE THESE?
+
+function multiTraits(people){
+  let searchFor = promptFor("i have no idea what im doing");
+  let searchArray = [];
+}
 
 function chosenTrait(people) {
   prompt;
@@ -473,6 +484,14 @@ function genderValidation (input){
   }
 }
 
-
+function singlMultipleValidation(input){
+  if(input.toLocaleLowerCase() == 'single' || input.toLowerCase()== 'multiple'){
+    return true;
+  }
+  else{
+    alert('Sorry that is not an option')
+    return false;
+  }
+}
 
 //#endregion
