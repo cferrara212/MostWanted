@@ -204,7 +204,8 @@ function searchByEyeColor(eyeColor,people)
   }
 
 function searchByOccupation(occupation, people) {
-  let fullNames = ''
+
+  let FullNames = ''
   let peopleWithOccupation = people.filter(function (matches) {
     if (matches.occupation.toLowerCase() === occupation.toLowerCase()) {
       return true;
@@ -294,6 +295,27 @@ function displayPerson(person) {
                    Eye Color: ${person.eyeColor}`;
   // TODO: finish getting the rest of the information to display.
   alert(personInfo);
+}
+
+/// function to return names in array.
+
+function arrayToStringForNames(array)
+  {
+    let allNames = ''
+
+    if (array.length) 
+     {
+       for (let person of array)
+       {
+         allNames += person.firstName + ' ' + person.lastName + '\n';
+       }
+       }
+     else
+     {
+        return 'No Matches Found';
+     } 
+
+     return allNames;
 }
 
 //Function to display the family of the person
