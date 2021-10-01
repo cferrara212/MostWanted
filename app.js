@@ -101,7 +101,9 @@ function searchByName(people) {
 function chosenTrait(people) {
   prompt;
   let searchFor = promptFor(
-    "what trait are you looking for? Please type 'eye color' 'occupation' 'gender' 'date of birth' 'height' or 'weight'",autoValid).toLocaleLowerCase();
+    "what trait are you looking for? Please type 'eye color' 'occupation' 'gender' 'date of birth' 'height' or 'weight'",
+    autoValid
+  ).toLocaleLowerCase();
 
   let occupationResult;
   let genderResult;
@@ -110,39 +112,58 @@ function chosenTrait(people) {
   let heightResult;
   let weightResult;
 
-
-  switch (searchFor) 
-  {
+  switch (searchFor) {
     case 'occupation':
       let occupationChoice = promptFor(
-        "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",autoValid).toLocaleLowerCase();
+        "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",
+        autoValid
+      ).toLocaleLowerCase();
       occupationResult = searchByOccupation(occupationChoice, people);
       console.log(occupationResult);
       break;
 
     case 'eye color':
-      let eyeColorChoice = promptFor("which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",autoValid).toLowerCase()
-      eyeColorResult = searchByEyeColor(eyeColorChoice,people);
+      let eyeColorChoice = promptFor(
+        "which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",
+        autoValid
+      ).toLowerCase();
+      eyeColorResult = searchByEyeColor(eyeColorChoice, people);
       break;
 
     case 'gender':
-      let genderChoice= promptFor("Which gender would you like to search for? Please enter 'male' or 'female", autoValid).toLowerCase();
-      genderResult= searchByGender(genderChoice,people);
+      let genderChoice = promptFor(
+        "Which gender would you like to search for? Please enter 'male' or 'female",
+        autoValid
+      ).toLowerCase();
+      genderResult = searchByGender(genderChoice, people);
       break;
 
     case 'date of birth':
-      let dobChoice= promptFor("Please enter a date of birth to search for. Use the format d/m/yyyy", autoValid);
-      dobResult = searchByDob(dobChoice,people);
+      let dobChoice = promptFor(
+        'Please enter a date of birth to search for. Use the format d/m/yyyy',
+        autoValid
+      );
+      dobResult = searchByDob(dobChoice, people);
       break;
 
     case 'height':
-      let heightChoice =Number( promptFor("Please enter the height in inches of the individual you are looking for", autoValid));
-      heightResult = searchByHeightRange(heightChoice,people);
+      let heightChoice = Number(
+        promptFor(
+          'Please enter the height in inches of the individual you are looking for',
+          autoValid
+        )
+      );
+      heightResult = searchByHeightRange(heightChoice, people);
       break;
 
     case 'weight':
-      let weightChoice =Number( promptFor("Please enter the weight in lbs of the individual you are looking for.",autoValid));
-      weightResult = searchByWeightRange(weightChoice,people);
+      let weightChoice = Number(
+        promptFor(
+          'Please enter the weight in lbs of the individual you are looking for.',
+          autoValid
+        )
+      );
+      weightResult = searchByWeightRange(weightChoice, people);
       break;
 
     default:
@@ -151,110 +172,71 @@ function chosenTrait(people) {
   }
 }
 
-function searchByEyeColor(eyeColor,people) 
+function searchByEyeColor(eyeColor, people) {
+  let peopleWithEyeColor = people.filter(function (matches) {
+    if (matches.eyeColor.toLowerCase() === eyeColor.toLowerCase()) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return peopleWithEyeColor;
+}
 
-  {
-    let peopleWithEyeColor = people.filter(function(matches)
-    {
-      if (matches.eyeColor.toLowerCase()===eyeColor.toLowerCase())
-          {
-            return true;
-          }
-      else
-          {
-            return false;
-          }
-    
-     })
-     return peopleWithEyeColor;
-  }
-
-
-function searchByOccupation(occupation, people) 
-{
-  let peopleWithOccupation = people.filter(function(matches)
-  {
-    if (matches.occupation.toLowerCase()===occupation.toLowerCase())
-        {
-          return true;
-        }
-    else
-        {
-          return false;
-        }
-  
-   })
-   return peopleWithOccupation;
+function searchByOccupation(occupation, people) {
+  let peopleWithOccupation = people.filter(function (matches) {
+    if (matches.occupation.toLowerCase() === occupation.toLowerCase()) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return peopleWithOccupation;
 }
 /////fix from here
-function searchByGender(gender,people) 
-{
-  let peopleWithGender = people.filter(function(matches)
-  {
-    if (matches.gender.toLowerCase()===gender.toLowerCase())
-        {
-          return true;
-        }
-    else
-        {
-          return false;
-        }
-  
-   })
-   return peopleWithGender;
+function searchByGender(gender, people) {
+  let peopleWithGender = people.filter(function (matches) {
+    if (matches.gender.toLowerCase() === gender.toLowerCase()) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return peopleWithGender;
 }
 
-function searchByDob(chosendob,people) 
-{
-  let peopleWithDob = people.filter(function(matches)
-  {
-    if (matches.dob.toLowerCase()===chosendob.toLowerCase())
-        {
-          return true;
-        }
-    else
-        {
-          return false;
-        }
-  
-   })
-   return peopleWithDob;
+function searchByDob(chosendob, people) {
+  let peopleWithDob = people.filter(function (matches) {
+    if (matches.dob.toLowerCase() === chosendob.toLowerCase()) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return peopleWithDob;
 }
 
-function searchByHeightRange(chosenHeight,people) 
-{
-  let peopleWithHeight = people.filter(function(matches)
-  {
-    if (matches.height===chosenHeight)
-        {
-          return true;
-        }
-    else
-        {
-          return false;
-        }
-  
-   })
-   return peopleWithHeight;
+function searchByHeightRange(chosenHeight, people) {
+  let peopleWithHeight = people.filter(function (matches) {
+    if (matches.height === chosenHeight) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return peopleWithHeight;
 }
 
-function searchByWeightRange(chosenWeight,people) 
-{
-  let peopleWithWeight = people.filter(function(matches)
-  {
-    if (matches.weight===chosenWeight)
-        {
-          return true;
-        }
-    else
-        {
-          return false;
-        }
-  
-   })
-   return peopleWithWeight;
+function searchByWeightRange(chosenWeight, people) {
+  let peopleWithWeight = people.filter(function (matches) {
+    if (matches.weight === chosenWeight) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return peopleWithWeight;
 }
-
 
 //#endregion
 
@@ -281,7 +263,7 @@ function displayPerson(person) {
                   Last Name:  ${person.lastName}
                        Height:  ${person.height}
                         Weight: ${person.weight}
-                            Age: ${person.age}
+                            Age: ${person.dob}
                   Ocupation: ${person.occupation}
                    Eye Color: ${person.eyeColor}`;
   // TODO: finish getting the rest of the information to display.
@@ -303,58 +285,57 @@ function displayPersonDescendants(person) {
 }
 
 function getPersonsSpouse(person, people) {
+  let fullName = '';
   if (person.currentSpouse !== null) {
     const spouse = people.filter(function (sPerson) {
       return sPerson.id === person.currentSpouse;
     });
 
-    if (spouse.length > 1) {
-      console.log('You are going to hell');
+    if (spouse.length === 1) {
+      fullName = spouse[0].firstName + ' ' + spouse[0].lastName;
+    } else {
+      return 'No Spouse found in Database';
     }
-    let fullName = spouse[0].firstName + ' ' + spouse[0].lastName;
-    //return spouse[0];
     return fullName;
   }
 
-  return null;
+  return 'No Spouse found in Database';
 }
+
 function getPersonsParents(person, people) {
-  if (person.parents !== null) {
-    const parent = people.find(function (sPerson) {
-      return sPerson.id === person.parents[0];
-    });
-
-    if (parent === undefined) {
-      return 'No Parent found in database';
+  let fullNames = '';
+  let parents = people.filter(function (sPerson) {
+    return person.parents.includes(sPerson.id);
+  });
+  if (parents.length) {
+    for (let parent of parents) {
+      fullNames += parent.firstName + ' ' + parent.lastName + '\n';
     }
-    let fullName = parent.firstName + ' ' + parent.lastName;
-    //return parent.firstName;
-    return fullName;
+  } else {
+    return 'No Parent Found in Database';
   }
-  return 'No Parent found in database';
+
+  return fullNames;
 }
+
 //#endregion
-
-
 
 //Validation functions.
 //Functions to validate user input.
 /////////////////////////////////////////////////////////////////
-//#region 
+//#region
 
 //a function that takes in a question to prompt, and a callback function to validate the user input.
 //response: Will capture the user input.
 //isValid: Will capture the return of the validation function callback. true(the user input is valid)/false(the user input was not valid).
 //this function will continue to loop until the user enters something that is not an empty string("") or is considered valid based off the callback function(valid).
-function promptFor(question, valid)
-{
+function promptFor(question, valid) {
   let isValid;
-  do{
-       var response = prompt(question).trim();
-       isValid = valid(response);
-    } 
-    while(response === ""  ||  isValid === false)
-    return response;
+  do {
+    var response = prompt(question).trim();
+    isValid = valid(response);
+  } while (response === '' || isValid === false);
+  return response;
 }
 
 // helper function/callback to pass into promptFor to validate yes/no answers.
