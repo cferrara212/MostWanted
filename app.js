@@ -15,6 +15,7 @@ function app(people) {
   switch (searchType) {
     case 'yes':
       searchResults = searchByName(people);
+      mainMenu(searchResults, people);
       break;
     case 'no':
       // TODO: search by traits
@@ -24,9 +25,6 @@ function app(people) {
       app(people); // restart app
       break;
   }
-
-  // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
 }
 
 // Menu function to call once you find who you are looking for
