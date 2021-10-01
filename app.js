@@ -119,7 +119,7 @@ function chosenTrait(people) {
         autoValid
       ).toLocaleLowerCase();
       occupationResult = searchByOccupation(occupationChoice, people);
-      console.log(occupationResult);
+      alert ("Here are the poeple that match your search" + '\n' + occupationResult);
       break;
 
     case 'eye color':
@@ -137,6 +137,7 @@ function chosenTrait(people) {
         autoValid
       ).toLowerCase();
       genderResult = searchByGender(genderChoice, people);
+      alert ("Here are the poeple that match your search" + '\n' + genderResult);
       break;
 
     case 'date of birth':
@@ -145,6 +146,7 @@ function chosenTrait(people) {
         autoValid
       );
       dobResult = searchByDob(dobChoice, people);
+      alert ("Here are the poeple that match your search" + '\n' + dobResult);
       break;
 
     case 'height':
@@ -155,6 +157,7 @@ function chosenTrait(people) {
         )
       );
       heightResult = searchByHeightRange(heightChoice, people);
+      alert ("Here are the poeple that match your search" + '\n' + heightResult);
       break;
 
     case 'weight':
@@ -165,6 +168,7 @@ function chosenTrait(people) {
         )
       );
       weightResult = searchByWeightRange(weightChoice, people);
+      alert ("Here are the poeple that match your search" + '\n' + weightResult);
       break;
 
     default:
@@ -175,7 +179,6 @@ function chosenTrait(people) {
 
 function searchByEyeColor(eyeColor,people) 
  {
-    let allNames = ''
     let peopleWithEyeColor = people.filter(function(matches)
     {
       if (matches.eyeColor.toLowerCase()===eyeColor.toLowerCase())
@@ -188,19 +191,8 @@ function searchByEyeColor(eyeColor,people)
           }
     
      })
-     if (peopleWithEyeColor.length) 
-     {
-       for (let person of peopleWithEyeColor)
-       {
-         allNames += person.firstName + ' ' + person.lastName + '\n';
-       }
-       }
-     else
-     {
-        return 'No Matches Found';
-     } 
-
-     return allNames;
+     let namesInString = arrayToStringForNames(peopleWithEyeColor);
+   return namesInString;
   }
 
 function searchByOccupation(occupation, people) {
@@ -213,7 +205,8 @@ function searchByOccupation(occupation, people) {
       return false;
     }
   });
-  return peopleWithOccupation;
+  let namesInString = arrayToStringForNames(peopleWithOccupation);
+  return namesInString;
 }
 /////fix from here
 function searchByGender(gender, people) {
@@ -225,7 +218,8 @@ function searchByGender(gender, people) {
       return false;
     }
   });
-  return peopleWithGender;
+  let namesInString = arrayToStringForNames(peopleWithGender);
+  return namesInString;
 
 }
 
@@ -238,7 +232,8 @@ function searchByDob(chosendob, people) {
       return false;
     }
   });
-  return peopleWithDob;
+  let namesInString = arrayToStringForNames(peopleWithDob);
+  return namesInString;
 }
 
 function searchByHeightRange(chosenHeight, people) {
@@ -250,7 +245,8 @@ function searchByHeightRange(chosenHeight, people) {
       return false;
     }
   });
-  return peopleWithHeight;
+  let namesInString = arrayToStringForNames(peopleWithHeight);
+  return namesInString;
 }
 
 function searchByWeightRange(chosenWeight, people) {
@@ -262,7 +258,8 @@ function searchByWeightRange(chosenWeight, people) {
       return false;
     }
   });
-  return peopleWithWeight;
+  let namesInString = arrayToStringForNames(peopleWithWeight);
+  return namesInString;
 }
 
 //#endregion
