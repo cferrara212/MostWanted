@@ -172,7 +172,7 @@ function chosenTrait(people) {
       break;
 
     default:
-      chosenttrait(people);
+      chosenTrait(people);
       break;
   }
 }
