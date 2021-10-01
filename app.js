@@ -119,7 +119,7 @@ function multiTraits(people){
         "which occupation type would you like to search for. You can choose 'doctor' 'programmer' 'assistant' 'landscaper' 'nurse' 'student' 'architect' or 'politician'",
         occupationValidation
       ).toLocaleLowerCase();
-      searchArray.push (occupationChoice);
+      searchArray[0]=occupationChoice;
        multiTraits(people);
       ;break
     case '2':
@@ -127,7 +127,7 @@ function multiTraits(people){
         "which eye color would you like to search for? You can choose 'brown' 'black' 'hazel' 'blue' or 'green' ",
         eyeColorValidation
       ).toLowerCase();
-      searchArray.push(eyeColorChoice);
+      searchArray[1]=eyeColorChoice;
       multiTraits(people);
       ;break
     case '3':
@@ -135,7 +135,7 @@ function multiTraits(people){
         "Which gender would you like to search for? Please enter 'male' or 'female",
         genderValidation
       ).toLowerCase();
-      searchArray.push(genderChoice);
+      searchArray[2]=genderChoice;
       multiTraits(people);
       break;
     case '4':
@@ -143,7 +143,7 @@ function multiTraits(people){
         'Please enter a date of birth to search for. Use the format d/m/yyyy',
         autoValid
       );
-      searchArray.push(dobChoice);
+      searchArray[3]=dobChoice;
       multiTraits(people);
       break;
     case '5':
@@ -152,7 +152,7 @@ function multiTraits(people){
           'Please enter the height in inches of the individual you are looking for',
           autoValid
         ));
-        searchArray.push(heightChoice)
+        searchArray[4]=heightChoice;
         multiTraits(people);
       break; 
     case '6':
@@ -161,11 +161,12 @@ function multiTraits(people){
           'Please enter the weight in lbs of the individual you are looking for.',
           autoValid
         ));
-        searchArray.push(weightChoice)
+        searchArray[5]=weightChoice;
         multiTraits(people);
       break;
     case '7':
       // use searchArray here
+      console.log(searchArray);
       break;
     default:
       multiTraits(people);
@@ -560,7 +561,7 @@ function singlMultipleValidation(input){
   }
 }
 function multiSearchOptionsVal(input){
-  if(input == '1' || input=='2' || input=='3' || input=='4' || input=='5' || input=='6'){
+  if(input == '1' || input=='2' || input=='3' || input=='4' || input=='5' || input=='6' || input=='7'){
     return true;
   }
   else{
