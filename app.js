@@ -82,6 +82,11 @@ function mainMenu(person, people) {
 //#region
 
 //nearly finished function used to search through an array of people to find matching first and last name and return a SINGLE person object.
+
+///
+function searchThroughAll (people){
+
+}
 function searchByName(people) {
   let firstName = promptFor("What is the person's first name?", autoValid);
   let lastName = promptFor("What is the person's last name?", autoValid);
@@ -166,6 +171,8 @@ function multiTraits(people){
       break;
     case '7':
       // use searchArray here
+      let matchingPeople = searchAttributes(searchArray,people);
+      alert("Here are the people that match your search" + "\n" + matchingPeople);
       console.log(searchArray);
       break;
     default:
@@ -338,6 +345,39 @@ function searchByWeightRange(chosenWeight, people) {
   return namesInString;
 }
 
+////
+////recursive case statement
+////
+function searchAttributes (attributes,people)
+{
+  let matchingNames = [];
+  for (let i = 0; i<people.length; i++)
+  {
+    if (people[i].occupation==attributes[0] || attributes[0]==undefined)
+    {
+      if (people[i].eyeColor==attributes[1] || attributes[1]==undefined)
+        {
+          if(people[i].gender==attributes[2]|| attributes[2]==undefined)
+          {
+            if(people[i].dob==attributes[3] || attributes[3]==undefined)
+            {
+              if(people[i].height==attributes[4] || attributes[4]==undefined)
+              {
+                if(people[i].weight==attributes[5] || attributes[5]==undefined)
+                {
+                  matchingNames.push(people[i]);
+                }
+              }
+            }
+          }
+        }
+    }
+   }
+   let matchingNamesString= arrayToStringForNames(matchingNames);
+   return matchingNamesString;
+}
+//// send attribute
+/// 
 //#endregion
 
 //Display functions.
