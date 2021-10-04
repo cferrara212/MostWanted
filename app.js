@@ -5,7 +5,6 @@
 //Used for the overall flow of the application.
 /////////////////////////////////////////////////////////////////
 //#region 
-console.log(data);
 
 // app is the function called to start the entire application
 function app(people) {
@@ -483,16 +482,29 @@ function getPersonsParents(person, people) {
   return fullNames;
 }
 function getPersonsSiblings(person, people) {
-  let fullNames = '';
   let siblings = people.filter(function (sPerson) {
-    return sPerson.parents[0] === person.parents[0];
-  });
-  if (siblings.length && siblings.parents !== -1) {
-    for (let sibling of siblings) {
-      fullNames += sibling.firstName + ' ' + sibling.lastName + '\n';
+    let areSiblings = false;
+
+    for (let myParent of person.parents) {
+      for (let sPersonParent of sPerson.parents) {
+        if (sPersonParent === myParent) {
+          areSiblings = true;
+          break;
+        }
+      }
+
+      if (areSiblings) {
+        break;
+      }
     }
-  } else {
-    return 'No Siblings Found in Database';
+
+    return areSiblings;
+  });
+
+  let fullNames = '\n';
+
+  for (let sibling of siblings) {
+    fullNames += sibling.firstName + ' ' + sibling.lastName + '\n';
   }
 
   return fullNames;
